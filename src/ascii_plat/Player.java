@@ -27,23 +27,23 @@ public class Player extends _GameObject
     
     public void moveLeft()
     {
-        this.acc=(new PVector(-force,0));
+        this.acc.add(new PVector(-force,0));
     }
     
     public void moveRight()
     {
-        this.acc=(new PVector(force,0));
+        this.acc.add(new PVector(force,0));
     }
     
     public void moveUp()
     {
-        this.acc=(new PVector(0,-force));
+        this.acc.add(new PVector(0,-force));
         this.sprite.anim(-1);
     }
     
     public void moveDown()
     {
-        this.acc=(new PVector(0,force));
+        this.acc.add(new PVector(0,force));
         this.sprite.anim(1);
     }
     

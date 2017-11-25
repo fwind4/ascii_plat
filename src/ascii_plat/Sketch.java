@@ -18,11 +18,13 @@ public class Sketch extends PApplet
     ArrayList<Obstacle> obstacles;
     
     PImage[] playerImg;
+    PImage[] obsImg;
+
     PImage filter;
     
     public void settings() 
     {
-        size(1200, 800);
+        size(800, 600);
     }
     
     public void setup()
@@ -30,6 +32,9 @@ public class Sketch extends PApplet
         playerImg = new PImage[2];
         playerImg[0] = loadImage("gradius.png");
         playerImg[1] = loadImage("gradius_mask.png");
+        obsImg = new PImage[2];
+        obsImg[0] = loadImage("moai.png");
+        obsImg[1] = null;
         filter = loadImage("3px.png");
         
         font = createFont("DroidSansMono.ttf", 14);
@@ -40,7 +45,7 @@ public class Sketch extends PApplet
         for(int i=0;i<10;++i)
         {
             PVector pos1 = new PVector(random(0,width), random(0,height));
-            Obstacle obs = new Obstacle(this,pos1,playerImg,25);
+            Obstacle obs = new Obstacle(this,pos1,obsImg,25);
             obs.move();
             obstacles.add(obs);
         }

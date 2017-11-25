@@ -17,7 +17,6 @@ public abstract class _Sprite {
     
     protected PImage img;
     protected PImage[] sprites;
-    protected PImage[] flames;
     protected PApplet p;
     protected PVector pos;
     
@@ -28,7 +27,7 @@ public abstract class _Sprite {
         this.p = p;
         this.pos = pos;
         this.img = img[0];
-        this.img.mask(img[1]);
+        if(img[1] != null) this.img.mask(img[1]);
         
     }
     

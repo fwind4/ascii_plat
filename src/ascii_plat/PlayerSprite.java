@@ -17,6 +17,7 @@ public class PlayerSprite extends _Sprite {
     
     private int fc = 0;
     private int counter = 3;
+    private PImage[] flames;
     
     public PlayerSprite(PImage[] img, PApplet p, PVector pos) {
         super(img, p, pos);
