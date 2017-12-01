@@ -14,13 +14,13 @@ import processing.core.*;
 public class Player extends _GameObject
 {
     
-    public Player(PApplet p, PVector pos, PImage[] img, float r) {
-        super(p, pos, img, r);
+    public Player(PApplet p, PVector pos, PImage[] img, float w, float h) {
+        super(p, pos, img, w, h);
         
         this.sprite = new PlayerSprite(img, p, pos);
         
         // ezekkel lehet jatszadozni hogy valtozzon a mozgas 
-        this.frict = 0.05f;
+        this.frict = 0.1f;
         this.maxVel = 10f;
         this.force = 0.5f;
     }

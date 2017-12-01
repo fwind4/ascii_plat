@@ -15,10 +15,12 @@ public class Sketch extends PApplet
 {
     PFont font;
     Player player;
+    ArrayList<Enemy1> e1s;
     ArrayList<Obstacle> obstacles;
     
     PImage[] playerImg;
     PImage[] obsImg;
+    PImage[] eImg;
 
     PImage filter;
     
@@ -35,17 +37,25 @@ public class Sketch extends PApplet
         obsImg = new PImage[2];
         obsImg[0] = loadImage("moai.png");
         obsImg[1] = null;
+        eImg = new PImage[2];
+        eImg[0] = loadImage("enemy.png");
+        eImg[1] = null;
         filter = loadImage("3px.png");
         
         font = createFont("DroidSansMono.ttf", 14);
         textFont(font, 14);
         PVector pos = new PVector(width*0.5f, height*0.5f);
-        player = new Player(this,pos,playerImg,20);
+        player = new Player(this,pos,playerImg,40,15);
         obstacles = new ArrayList<>();
-        for(int i=0;i<10;++i)
+        e1s = new ArrayList<>();
+        for(int i=0;i<5;++i)
         {
-            PVector pos1 = new PVector(random(0,width), random(0,height));
-            Obstacle obs = new Obstacle(this,pos1,obsImg,25);
+            PVector pos1 = new PVector(width*0.5f+i*50,height*0.5f);
+            Enemy1 e1 = new Enemy1(this,pos1.copy(),eImg,25,25);
+            e1.move();
+            e1s.add(e1);
+            pos1 = new PVector(random(0,width), random(0,height));
+            Obstacle obs = new Obstacle(this,pos1,obsImg,30,70);
             obs.move();
             obstacles.add(obs);
         }
@@ -57,6 +67,12 @@ public class Sketch extends PApplet
         background(20);
         player.update();
         player.render();
+        for(Enemy1 e1 : e1s)
+        {
+            e1.update();
+            e1.render();
+            e1.oscilate();
+        }
         for(Obstacle obs : obstacles)
         {
             obs.update();

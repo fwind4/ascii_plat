@@ -13,17 +13,18 @@ import processing.core.PVector;
  *
  * @author wind
  */
-public class ObsSprite extends _Sprite{
+public class Enemy1Sprite extends _Sprite
+{
 
     private int c = 0;
     private int state = 1;
     
-    public ObsSprite(PImage[] img, PApplet p, PVector pos) 
+    public Enemy1Sprite(PImage[] img, PApplet p, PVector pos) 
     {
         super(img, p, pos);
         
-        this.sprites = new PImage[5];
-        int x = 8,y = 0, w = 42, h = 80;
+        this.sprites = new PImage[6];
+        int x = 8,y = 50, w = 35, h = 55;
         
         for (int i=0;i<sprites.length;i++)
         {
@@ -46,7 +47,8 @@ public class ObsSprite extends _Sprite{
         }
         p.pushMatrix();
         //p.scale(state, 1);
-        p.image(sprites[c],pos.x-w-10,pos.y-h-13);
+        p.image(sprites[c],pos.x-w-5,pos.y-h-35);
         p.popMatrix();
     }
+    
 }

@@ -38,7 +38,7 @@ public class PlayerSprite extends _Sprite {
         }
     }
     
-    public void render()
+    public void render(float w, float h)
     {
         if(anim == -1 && counter != 0 && p.frameCount % 10 == 0)
         {

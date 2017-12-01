@@ -11,9 +11,9 @@ import processing.core.*;
  */
 public class Obstacle extends _GameObject
 {
-    public Obstacle(PApplet p, PVector pos, PImage[] img, float r)
+    public Obstacle(PApplet p, PVector pos, PImage[] img, float w, float h)
     {
-        super(p, pos, img, r);
+        super(p, pos, img, w, h);
         
         this.sprite = new ObsSprite(img, p, pos);
         

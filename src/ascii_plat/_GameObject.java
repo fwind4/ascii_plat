@@ -14,7 +14,8 @@ public abstract class _GameObject
     protected PVector pos;
     protected PVector vel = new PVector(0,0);
     protected PVector acc = new PVector(0,0);
-    protected float r;
+    protected float w;
+    protected float h;
     protected _Sprite sprite;
     protected int spriteCounter = 0;
     
@@ -22,11 +23,12 @@ public abstract class _GameObject
     protected float maxVel;
     protected float force;
 
-    public _GameObject( PApplet p, PVector pos, PImage[] img, float r)
+    public _GameObject( PApplet p, PVector pos, PImage[] img, float w, float h)
     {
 	this.pos = pos;
 	this.p = p;
-	this.r = r;
+	this.w = w;
+        this.h = h;
         
     }
 
@@ -37,32 +39,41 @@ public abstract class _GameObject
 	this.pos.add(this.vel);
 	edges();
         
-        if(this.vel.x != 0)
+        float x = 0, y = 0;
+        if(this.vel.x > frict || this.vel.x < -frict)
         {
-            this.vel.x = this.vel.x > 0 ? this.vel.x - frict : this.vel.x + frict;
+            x = this.vel.x > 0 ? frict : -frict;
         }
-        if(this.vel.y != 0)
+        if(this.vel.y > frict || this.vel.y < -frict)
         {
-            this.vel.y = this.vel.y > 0 ? this.vel.y - frict : this.vel.y + frict;
+            y = this.vel.y > 0 ? frict : -frict;
         }
+        PVector fv = new PVector(x,y);
+        this.vel.sub(fv);
         
     }
     
     public void edges()
     {
-	if (pos.x > p.width + r)
-	    pos.x = -r;
-	else if (pos.x < -r)
-	    pos.x = p.width + r;
-	else if (pos.y > p.height + r)
-	    pos.y = -r;
-	else if (pos.y < -r)
-	    pos.y = p.height + r;
+	if (pos.x > p.width + w)
+	    pos.x = -w;
+	else if (pos.x < -w)
+	    pos.x = p.width + w;
+	else if (pos.y > p.height + h)
+	    pos.y = -h;
+	else if (pos.y < -h)
+	    pos.y = p.height + h;
     }
     
     public void render()
     {
-	sprite.render();
+	sprite.render(w,h);
+        //debug
+        p.pushMatrix();
+        p.noFill();
+        p.stroke(255);
+        p.rect(pos.x-w,pos.y-h,2*w,2*h);
+        p.popMatrix();
     }
  
 }

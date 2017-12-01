@@ -31,7 +31,7 @@ public abstract class _Sprite {
         
     }
     
-    abstract void render();
+    abstract void render(float w, float h);
     
     public void anim(int anim)
     {
