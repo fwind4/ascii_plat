@@ -69,11 +69,11 @@ public abstract class _GameObject
     {
 	sprite.render(w,h);
         //debug
-        p.pushMatrix();
-        p.noFill();
-        p.stroke(255);
-        p.rect(pos.x-w,pos.y-h,2*w,2*h);
-        p.popMatrix();
+//        p.pushMatrix();
+//        p.noFill();
+//        p.stroke(255);
+//        p.rect(pos.x-w,pos.y-h,2*w,2*h);
+//        p.popMatrix();
     }
  
 }
