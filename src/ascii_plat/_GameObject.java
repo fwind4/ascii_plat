@@ -18,6 +18,7 @@ public abstract class _GameObject
     public float h;
     public boolean hide = false;
     public boolean zombie = false;
+    public boolean debug = false;
     protected _Sprite sprite;
     protected int spriteCounter = 0;
     
@@ -78,11 +79,14 @@ public abstract class _GameObject
         
 	sprite.render(w,h);
         //debug
-//        p.pushMatrix();
-//        p.noFill();
-//        p.stroke(255);
-//        p.rect(pos.x-w,pos.y-h,2*w,2*h);
-//        p.popMatrix();
+	if(debug)
+	{
+	    p.pushMatrix();
+	    p.noFill();
+	    p.stroke(255);
+	    p.rect(pos.x-w,pos.y-h,2*w,2*h);
+	    p.popMatrix();
+	}
     }
     
     public boolean checkColide(_GameObject that)

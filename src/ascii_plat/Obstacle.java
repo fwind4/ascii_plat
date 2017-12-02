@@ -25,9 +25,8 @@ public class Obstacle extends _GameObject
     
     public void move()
     {
-        float x  = p.random(-force,force);
-        float y  = p.random(-force,force);
-        this.maxVel = p.random(0,5);
+        float x  = -force;
+        float y  = 0;
         this.acc=(new PVector(x, y));
     }
 

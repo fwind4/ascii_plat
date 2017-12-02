@@ -46,16 +46,16 @@ public class Sketch extends PApplet
         objs = new ArrayList<>();
         PVector pos = new PVector(50, 30);
         Player player = new Player(this,pos,playerImg,40,15);
-        Explosion ex = new Explosion(this, new PVector(-150,-150), exImg, 960f/5f, 576f/3f);
+        Explosion ex = new Explosion(this, new PVector(-150,-150), exImg, 100, 100);
         objs.add(player);
         objs.add(ex);
         for(int i=0;i<3;++i)
         {
-            PVector pos1 = new PVector(width*0.5f+i*50,height*0.5f);
+            PVector pos1 = new PVector(width*0.5f+i*70,height*0.5f);
             Enemy1 e1 = new Enemy1(this,pos1.copy(),eImg,25,25);
             e1.move();
             objs.add(e1);
-            pos1 = new PVector(random(0,width), height-70);
+            pos1 = new PVector(i*170, height-50);
             Obstacle obs = new Obstacle(this,pos1,obsImg,30,70);
             obs.move();
             objs.add(obs);
@@ -101,6 +101,15 @@ public class Sketch extends PApplet
             case 'D':
                 player.moveRight();
                 break;
+	    case '`':
+		for(_GameObject obj:objs)
+		{
+		    if(obj.debug)
+			obj.debug = false;
+		    else
+			obj.debug = true;
+		}
+		break;
             default:
                 break;
         }
