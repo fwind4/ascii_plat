@@ -15,6 +15,7 @@ public class Sketch extends PApplet
 {
     PFont font;
     ArrayList<_GameObject> objs;
+    Colider colider;
     
     PImage filter;
     
@@ -34,26 +35,33 @@ public class Sketch extends PApplet
         PImage[] eImg = new PImage[2];
         eImg[0] = loadImage("enemy.png");
         eImg[1] = null;
+        PImage[] exImg = new PImage[2];
+        exImg[0] = loadImage("explosion.png");
+        exImg[1] = null;
         filter = loadImage("3px.png");
         
         font = createFont("DroidSansMono.ttf", 14);
         textFont(font, 14);
         
         objs = new ArrayList<>();
-        PVector pos = new PVector(width*0.5f, height*0.5f);
+        PVector pos = new PVector(50, 30);
         Player player = new Player(this,pos,playerImg,40,15);
+        Explosion ex = new Explosion(this, new PVector(-150,-150), exImg, 960f/5f, 576f/3f);
         objs.add(player);
-        for(int i=0;i<5;++i)
+        objs.add(ex);
+        for(int i=0;i<3;++i)
         {
             PVector pos1 = new PVector(width*0.5f+i*50,height*0.5f);
             Enemy1 e1 = new Enemy1(this,pos1.copy(),eImg,25,25);
             e1.move();
             objs.add(e1);
-            pos1 = new PVector(random(0,width), random(0,height));
+            pos1 = new PVector(random(0,width), height-70);
             Obstacle obs = new Obstacle(this,pos1,obsImg,30,70);
             obs.move();
             objs.add(obs);
         }
+        
+        colider = new Colider(this,objs,ex);
         
     }
     
@@ -64,11 +72,12 @@ public class Sketch extends PApplet
         {
             obj.update();
             obj.render();
-            if(obj instanceof Enemy1)
-                ((Enemy1)obj).oscilate();
         }
         
         image(filter,0,0);
+        
+        //could be intense
+        colider.checkHit();
     }
 
     @Override

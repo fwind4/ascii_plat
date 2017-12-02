@@ -11,11 +11,13 @@ import processing.core.PVector;
 public abstract class _GameObject
 {
     protected PApplet p;
-    protected PVector pos;
+    public PVector pos;
     protected PVector vel = new PVector(0,0);
     protected PVector acc = new PVector(0,0);
-    protected float w;
-    protected float h;
+    public float w;
+    public float h;
+    public boolean hide = false;
+    public boolean zombie = false;
     protected _Sprite sprite;
     protected int spriteCounter = 0;
     
@@ -51,7 +53,11 @@ public abstract class _GameObject
         PVector fv = new PVector(x,y);
         this.vel.sub(fv);
         
+        this.oscilate();
     }
+    
+    public abstract void oscilate();
+    public abstract boolean die();
     
     public void edges()
     {
@@ -67,6 +73,9 @@ public abstract class _GameObject
     
     public void render()
     {
+        if(hide)
+            return;
+        
 	sprite.render(w,h);
         //debug
 //        p.pushMatrix();
@@ -75,5 +84,16 @@ public abstract class _GameObject
 //        p.rect(pos.x-w,pos.y-h,2*w,2*h);
 //        p.popMatrix();
     }
+    
+    public boolean checkColide(_GameObject that)
+    {
+        if(this.pos.x+this.w > that.pos.x-that.w &&
+                this.pos.x-this.w < that.pos.x+that.w &&
+                this.pos.y+this.h > that.pos.y-that.h &&
+                this.pos.y-this.h < that.pos.y+that.h)
+            return true;
+        return false;
+    }
+    
  
 }

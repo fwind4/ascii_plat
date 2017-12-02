@@ -63,4 +63,18 @@ public class Player extends _GameObject
         npos.mult(force);
         this.acc = npos;
     }
+
+    @Override
+    public void oscilate() {
+        
+    }
+    
+    @Override
+    public boolean die() {
+        this.pos.x = 50;
+        this.pos.y = p.height*0.5f;
+        hide = false;
+        zombie = false;
+        return false;
+    }
 }

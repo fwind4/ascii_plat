@@ -30,4 +30,14 @@ public class Obstacle extends _GameObject
         this.maxVel = p.random(0,5);
         this.acc=(new PVector(x, y));
     }
+
+    @Override
+    public void oscilate() {
+        
+    }
+    
+    @Override
+    public boolean die() {
+        return true;
+    }
 }

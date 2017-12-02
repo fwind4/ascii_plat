@@ -21,6 +21,7 @@ public abstract class _Sprite {
     protected PVector pos;
     
     protected int anim = 0;
+    int c = 0;
     
     public _Sprite(PImage[] img, PApplet p, PVector pos)
     {
