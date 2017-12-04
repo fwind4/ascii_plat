@@ -50,6 +50,7 @@ public class Colider {
     private void destroyObjs()
     {
         ArrayList<_GameObject> zombies = new ArrayList<>();
+       
         for (_GameObject obj : objs)
         {
             if(obj.zombie)

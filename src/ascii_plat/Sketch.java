@@ -16,7 +16,7 @@ public class Sketch extends PApplet
     PFont font;
     ArrayList<_GameObject> objs;
     Colider colider;
-    
+    PImage[] obsImg;
     PImage filter;
     
     public void settings() 
@@ -29,7 +29,7 @@ public class Sketch extends PApplet
         PImage[] playerImg = new PImage[2];
         playerImg[0] = loadImage("gradius.png");
         playerImg[1] = loadImage("gradius_mask.png");
-        PImage[] obsImg = new PImage[2];
+        obsImg = new PImage[2];
         obsImg[0] = loadImage("moai.png");
         obsImg[1] = null;
         PImage[] eImg = new PImage[2];
@@ -42,7 +42,6 @@ public class Sketch extends PApplet
         
         font = createFont("DroidSansMono.ttf", 14);
         textFont(font, 14);
-        
         objs = new ArrayList<>();
         PVector pos = new PVector(50, 30);
         Player player = new Player(this,pos,playerImg,40,15);
@@ -100,6 +99,14 @@ public class Sketch extends PApplet
             case 'd':
             case 'D':
                 player.moveRight();
+                break;
+            case 'p':
+            case 'P':
+                PVector pos = player.pos.copy();
+                pos.x += 50;
+                Projectile proj=new Projectile(this,pos,obsImg,10,10);
+                objs.add(proj);
+                proj.move();
                 break;
 	    case '`':
 		for(_GameObject obj:objs)
