@@ -49,15 +49,21 @@ public class Sketch extends PApplet
         objs.add(player);
         objs.add(ex);
         for(int i=0;i<3;++i)
-        {
+        {   
+            PVector pos2 = new PVector(width*0.2f+i*50,height*0.3f);
             PVector pos1 = new PVector(width*0.5f+i*70,height*0.5f);
             Enemy1 e1 = new Enemy1(this,pos1.copy(),eImg,25,25);
             e1.move();
+            Enemy2 e2 = new Enemy2(this,pos2.copy(),eImg,10,10);
             objs.add(e1);
             pos1 = new PVector(i*170, height-50);
+            pos2 = new PVector(i*100,height-25);
             Obstacle obs = new Obstacle(this,pos1,obsImg,30,70);
+            Obstacle obs1 = new Obstacle(this,pos2,obsImg,20,50);
             obs.move();
             objs.add(obs);
+            obs1.move();
+            objs.add(obs1);
         }
         
         colider = new Colider(this,objs,ex);
