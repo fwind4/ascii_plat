@@ -16,9 +16,12 @@ import processing.core.PVector;
 public class Enemy2 extends _GameObject
 {
     float cc = 0.25f;
+    float fi = 0;
     
-    public Enemy2(PApplet p, PVector pos, PImage[] img, float w, float h) {
+    public Enemy2(PApplet p, PVector pos, PImage[] img, float w, float h, float fi) {
         super(p, pos, img, w, h);
+        
+        this.fi = fi;
         
         this.sprite = new Enemy2Sprite(img, p, pos);
         cc = p.map(pos.x, 0, p.width, 0, 0.5f);
@@ -38,7 +41,7 @@ public class Enemy2 extends _GameObject
     
     public void oscilate()
     {
-        this.pos.y = pos.y + 5*p.sin(cc*p.TWO_PI);
+        this.pos.y = pos.y + 5*p.sin(cc*p.TWO_PI+fi);
         cc += 0.01f;
     }
 

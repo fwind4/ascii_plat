@@ -12,7 +12,10 @@ import processing.core.*;
  * @author wind
  */
 public class Sketch extends PApplet
-{
+{   int state = 0; //The current state
+    final int MAIN_MENU = 0;
+    final int GAME = 2;
+    final int PAUSE = 3;
     PFont font;
     ArrayList<_GameObject> objs;
     Colider colider;
@@ -21,11 +24,14 @@ public class Sketch extends PApplet
     
     public void settings() 
     {
-        size(800, 600);
+        //size(1200, 700);
+        fullScreen();
     }
     
     public void setup()
-    {
+    {   
+        
+        
         PImage[] playerImg = new PImage[2];
         playerImg[0] = loadImage("gradius.png");
         playerImg[1] = loadImage("gradius_mask.png");
@@ -48,41 +54,57 @@ public class Sketch extends PApplet
         Explosion ex = new Explosion(this, new PVector(-150,-150), exImg, 100, 100);
         objs.add(player);
         objs.add(ex);
+        PVector pos2 = new PVector(width - 100, 100);
+        Enemy2 e21 = new Enemy2(this,pos2.copy(),eImg,20,20,PI/2);
+        e21.move();
+        objs.add(e21);
+        pos2 = new PVector(width -150, 100);
+        Enemy2 e22 = new Enemy2(this,pos2,eImg,20,20,0);
+        e22.move();
+        objs.add(e22);
         for(int i=0;i<3;++i)
-        {   
-            PVector pos2 = new PVector(width*0.2f+i*50,height*0.3f);
+        {
             PVector pos1 = new PVector(width*0.5f+i*70,height*0.5f);
             Enemy1 e1 = new Enemy1(this,pos1.copy(),eImg,25,25);
             e1.move();
-            Enemy2 e2 = new Enemy2(this,pos2.copy(),eImg,10,10);
             objs.add(e1);
             pos1 = new PVector(i*170, height-50);
-            pos2 = new PVector(i*100,height-25);
             Obstacle obs = new Obstacle(this,pos1,obsImg,30,70);
-            Obstacle obs1 = new Obstacle(this,pos2,obsImg,20,50);
             obs.move();
             objs.add(obs);
-            obs1.move();
-            objs.add(obs1);
+         
         }
         
         colider = new Colider(this,objs,ex);
+        
         
     }
     
     public void draw()
     {
+        //image(filter,0,0);
+        
         background(20);
-        for(_GameObject obj : objs)
-        {
-            obj.update();
-            obj.render();
-        }
-        
-        image(filter,0,0);
-        
         //could be intense
         colider.checkHit();
+    
+        switch(state) {
+            case MAIN_MENU:
+              //Main Menu Stuff
+                
+              break;
+            case GAME:
+                for(_GameObject obj : objs)
+                {
+                    obj.update();
+                    obj.render();
+                }
+              //Game Stuff
+              break;
+            case PAUSE:
+              //Pause Stuff
+            break;
+        }  
     }
 
     @Override
@@ -113,6 +135,15 @@ public class Sketch extends PApplet
                 Projectile proj=new Projectile(this,pos,obsImg,10,10);
                 objs.add(proj);
                 proj.move();
+                break;
+            case '1':
+                state=MAIN_MENU;
+                break;
+            case '2':
+                state=GAME;
+                break;
+            case '3':
+                state=PAUSE;
                 break;
 	    case '`':
 		for(_GameObject obj:objs)

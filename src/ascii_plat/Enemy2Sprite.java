@@ -23,8 +23,8 @@ public class Enemy2Sprite extends _Sprite
     {
         super(img, p, pos);
         
-        this.sprites = new PImage[8];
-        int x = 8,y = 50, w = 35, h = 55;
+        this.sprites = new PImage[5];
+        int x = 8,y = 130, w =35 , h = 35;
         
         for (int i=0;i<sprites.length;i++)
         {
