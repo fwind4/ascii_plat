@@ -65,6 +65,10 @@ public class Sketch extends PApplet
         Enemy2 e22 = new Enemy2(this,pos2,eImg,20,20,0);
         e22.move();
         objs.add(e22);
+        PVector pos3 = new PVector(200, 200);
+        Enemy3 e3 = new Enemy3(this, pos3, eImg, 30, 30);
+        e3.move();
+        objs.add(e3);
         for(int i=0;i<3;++i)
         {
             PVector pos1 = new PVector(width*0.5f+i*70,height*0.5f);
@@ -86,8 +90,8 @@ public class Sketch extends PApplet
     {
         
         background(20);
-        //could be intense
-        colider.checkHit();
+        //could be intense, UTKOZES
+        //colider.checkHit();
     
         switch(state) {
             case MAIN_MENU:

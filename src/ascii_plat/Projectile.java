@@ -20,7 +20,7 @@ public class Projectile extends _GameObject{
         this.sprite=new ProjSprite(img,p,pos);
         
         this.frict = 0.05f;
-        this.maxVel = 5f;
+        this.maxVel = 10f;
         this.force = 10f;
     }
     
