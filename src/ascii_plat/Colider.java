@@ -35,7 +35,10 @@ public class Colider {
                 continue;
             for(_GameObject obj2 : objs)
             {
-                if(obj2 instanceof Explosion)
+                if(obj2 instanceof Explosion || 
+                        (obj1 instanceof Projectile && obj2 instanceof Player) ||
+                        (obj2 instanceof Projectile && obj1 instanceof Player) ||
+                        (obj2 instanceof Projectile && obj1 instanceof Projectile))
                     continue;
                 if(obj1 != obj2 && obj1.checkColide(obj2))
                 {

@@ -38,7 +38,7 @@ public class Enemy2 extends _GameObject
     
     public void oscilate()
     {
-        this.pos.y = pos.y + 5*p.sin(cc*p.TWO_PI);
+        this.pos.y = pos.y + 2*p.sin(cc*p.TWO_PI);
         cc += 0.01f;
     }
 

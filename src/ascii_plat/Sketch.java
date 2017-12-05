@@ -16,7 +16,7 @@ public class Sketch extends PApplet
     PFont font;
     ArrayList<_GameObject> objs;
     Colider colider;
-    PImage[] obsImg;
+    PImage[] projImg;
     PImage filter;
     
     public void settings() 
@@ -29,7 +29,10 @@ public class Sketch extends PApplet
         PImage[] playerImg = new PImage[2];
         playerImg[0] = loadImage("gradius.png");
         playerImg[1] = loadImage("gradius_mask.png");
-        obsImg = new PImage[2];
+        projImg = new PImage[2];
+        projImg[0] = loadImage("viper.png");
+        projImg[1] = null;
+        PImage[] obsImg = new PImage[2];
         obsImg[0] = loadImage("moai.png");
         obsImg[1] = null;
         PImage[] eImg = new PImage[2];
@@ -50,20 +53,17 @@ public class Sketch extends PApplet
         objs.add(ex);
         for(int i=0;i<3;++i)
         {   
-            PVector pos2 = new PVector(width*0.2f+i*50,height*0.3f);
-            PVector pos1 = new PVector(width*0.5f+i*70,height*0.5f);
+            PVector pos1 = new PVector(width*0.2f+i*50,height*0.3f);
+            PVector pos2 = new PVector(width*0.7f+i*70,100);
             Enemy1 e1 = new Enemy1(this,pos1.copy(),eImg,25,25);
             e1.move();
-            Enemy2 e2 = new Enemy2(this,pos2.copy(),eImg,10,10);
+            Enemy2 e2 = new Enemy2(this,pos2,eImg,25,25);
             objs.add(e1);
+            objs.add(e2);
             pos1 = new PVector(i*170, height-50);
-            pos2 = new PVector(i*100,height-25);
             Obstacle obs = new Obstacle(this,pos1,obsImg,30,70);
-            Obstacle obs1 = new Obstacle(this,pos2,obsImg,20,50);
             obs.move();
             objs.add(obs);
-            obs1.move();
-            objs.add(obs1);
         }
         
         colider = new Colider(this,objs,ex);
@@ -79,7 +79,7 @@ public class Sketch extends PApplet
             obj.render();
         }
         
-        image(filter,0,0);
+        //image(filter,0,0);
         
         //could be intense
         colider.checkHit();
@@ -109,8 +109,9 @@ public class Sketch extends PApplet
             case 'p':
             case 'P':
                 PVector pos = player.pos.copy();
-                pos.x += 50;
-                Projectile proj=new Projectile(this,pos,obsImg,10,10);
+                pos.x += 40;
+                pos.y += 2;
+                Projectile proj=new Projectile(this,pos,projImg,5,10);
                 objs.add(proj);
                 proj.move();
                 break;
