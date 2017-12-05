@@ -19,13 +19,13 @@ public class Sketch extends PApplet
     PFont font;
     ArrayList<_GameObject> objs;
     Colider colider;
-    PImage[] obsImg;
+    PImage[] projImg;
     PImage filter;
     
     public void settings() 
     {
-        //size(1200, 700);
-        fullScreen();
+        size(1200, 700);
+        //fullScreen();
     }
     
     public void setup()
@@ -35,7 +35,10 @@ public class Sketch extends PApplet
         PImage[] playerImg = new PImage[2];
         playerImg[0] = loadImage("gradius.png");
         playerImg[1] = loadImage("gradius_mask.png");
-        obsImg = new PImage[2];
+        projImg = new PImage[2];
+        projImg[0] = loadImage("viper.png");
+        projImg[1] = null;
+        PImage[] obsImg = new PImage[2];
         obsImg[0] = loadImage("moai.png");
         obsImg[1] = null;
         PImage[] eImg = new PImage[2];
@@ -65,14 +68,13 @@ public class Sketch extends PApplet
         for(int i=0;i<3;++i)
         {
             PVector pos1 = new PVector(width*0.5f+i*70,height*0.5f);
-            Enemy1 e1 = new Enemy1(this,pos1.copy(),eImg,25,25);
+            Enemy1 e1 = new Enemy1(this,pos1,eImg,25,25);
             e1.move();
             objs.add(e1);
             pos1 = new PVector(i*170, height-50);
             Obstacle obs = new Obstacle(this,pos1,obsImg,30,70);
             obs.move();
             objs.add(obs);
-         
         }
         
         colider = new Colider(this,objs,ex);
@@ -82,7 +84,6 @@ public class Sketch extends PApplet
     
     public void draw()
     {
-        //image(filter,0,0);
         
         background(20);
         //could be intense
@@ -131,8 +132,9 @@ public class Sketch extends PApplet
             case 'p':
             case 'P':
                 PVector pos = player.pos.copy();
-                pos.x += 50;
-                Projectile proj=new Projectile(this,pos,obsImg,10,10);
+                pos.x += 40;
+                pos.y += 2;
+                Projectile proj=new Projectile(this,pos,projImg,5,10);
                 objs.add(proj);
                 proj.move();
                 break;
