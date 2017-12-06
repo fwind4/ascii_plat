@@ -141,7 +141,23 @@ public class Sketch extends PApplet
     public void keyReleased()
     {
         Player player = (Player) objs.get(0);
-        player.stop();
+        switch(key)
+        {
+            case 'w':
+            case 'W':
+            case 's':
+            case 'S':
+                player.stopUpDown();
+                break;
+            case 'a':
+            case 'A':
+            case 'd':
+            case 'D':
+                player.stopLeftRight();
+                break;
+            default:
+                break;
+        }
     }
     
     public void mousePressed()
@@ -153,6 +169,5 @@ public class Sketch extends PApplet
     public void mouseReleased()
     {
         Player player = (Player) objs.get(0);
-        player.stop();
     }
 }

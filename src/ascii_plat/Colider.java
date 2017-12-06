@@ -74,6 +74,8 @@ public class Colider {
             }
             if(obj.die())
             {
+                if(obj.spawn_c > 0)
+                    obj.spawn_c--;
                 objs.remove(obj);
             }
         }

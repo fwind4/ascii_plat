@@ -47,6 +47,7 @@ public class Csillagok extends _GameObject{
         {
             pos.x = p.width + w;
             pos.y = p.random(0, p.height);
+            this.acc.x=-force;
             acc = acc.mult(10);
             maxVel = p.random(1,20);
         }

@@ -85,8 +85,6 @@ public class SpawnFactory {
         }
         if(en != null)
         {
-            if(en.spawn_c > 0)
-                en.spawn_c--;
             enemies.remove(en);
         }
         
