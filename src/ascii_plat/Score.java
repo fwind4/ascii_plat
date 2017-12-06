@@ -24,9 +24,8 @@ public class Score {
         p.textFont(font, 14);
     }
     public void drow(){
-        p.pushMatrix();
-        p.fill(255,231, 255);
-        p.text("score: "+c.score, p.width-100, 50);
-        p.popMatrix();
+        p.fill(220);
+        p.text("Score: "+c.score, p.width-100, 50);
+        p.fill(255);
     }
 }

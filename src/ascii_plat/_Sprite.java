@@ -23,13 +23,10 @@ public abstract class _Sprite {
     protected int anim = 0;
     int c = 0;
     
-    public _Sprite(PImage[] img, PApplet p, PVector pos)
+    public _Sprite(PApplet p, PVector pos)
     {
         this.p = p;
         this.pos = pos;
-        this.img = img[0];
-        if(img[1] != null) this.img.mask(img[1]);
-        
     }
     
     abstract void render(float w, float h);

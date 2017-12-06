@@ -1,7 +1,6 @@
 package ascii_plat;
 
 import processing.core.PApplet;
-import processing.core.PImage;
 import processing.core.PVector;
 
 /**
@@ -18,7 +17,10 @@ public abstract class _GameObject
     public float h;
     public boolean hide = false;
     public boolean zombie = false;
+    public boolean silent_zombie = false;
     public boolean debug = false;
+    public boolean isEnemy = false;
+    public static int spawn_c = 0;
     protected _Sprite sprite;
     protected int spriteCounter = 0;
     
@@ -26,7 +28,7 @@ public abstract class _GameObject
     protected float maxVel;
     protected float force;
 
-    public _GameObject( PApplet p, PVector pos, PImage[] img, float w, float h)
+    public _GameObject( PApplet p, PVector pos, float w, float h)
     {
 	this.pos = pos;
 	this.p = p;
@@ -62,22 +64,16 @@ public abstract class _GameObject
     
     public void edges()
     {
-	if (pos.x > p.width + w)
-	    pos.x = -w;
-	else if (pos.x < -w)
-	    pos.x = p.width + w;
-	else if (pos.y > p.height + h)
+	if (pos.y > p.height + h)
 	    pos.y = -h;
 	else if (pos.y < -h)
 	    pos.y = p.height + h;
+        else if(pos.x+w < 0)
+            silent_zombie = true;
     }
     
     public void render()
     {
-        if(hide)
-            return;
-        
-	sprite.render(w,h);
         //debug
 	if(debug)
 	{
@@ -87,6 +83,11 @@ public abstract class _GameObject
 	    p.rect(pos.x-w,pos.y-h,2*w,2*h);
 	    p.popMatrix();
 	}
+        if(hide)
+            return;
+        
+	sprite.render(w,h);
+        
     }
     
     public boolean checkColide(_GameObject that)

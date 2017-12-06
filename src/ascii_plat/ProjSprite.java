@@ -17,9 +17,10 @@ public class ProjSprite extends _Sprite{
     
     private int state = 1;
 
-    public ProjSprite(PImage[] img, PApplet p, PVector pos) {
-        super(img, p, pos);
+    public ProjSprite(PApplet p, PVector pos) {
+        super(p, pos);
         
+        this.img = p.loadImage("viper.png");
         this.sprites = new PImage[8];
         int x = 8,y = 70, w = 5, h = 10;
         

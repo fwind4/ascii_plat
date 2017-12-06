@@ -19,9 +19,11 @@ public class PlayerSprite extends _Sprite {
     private int counter = 3;
     private PImage[] flames;
     
-    public PlayerSprite(PImage[] img, PApplet p, PVector pos) {
-        super(img, p, pos);
+    public PlayerSprite(PApplet p, PVector pos) {
+        super(p, pos);
         
+        this.img = p.loadImage("gradius.png");
+        this.img.mask(p.loadImage("gradius_mask.png"));
         this.sprites = new PImage[9];
         this.flames = new PImage[4];
         int x = 46,y = 18, w = 23, h = 16, fw = 8;

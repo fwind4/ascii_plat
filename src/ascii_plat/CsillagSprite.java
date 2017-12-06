@@ -6,7 +6,6 @@
 package ascii_plat;
 
 import processing.core.PApplet;
-import processing.core.PImage;
 import processing.core.PVector;
 
 /**
@@ -15,16 +14,18 @@ import processing.core.PVector;
  */
 public class CsillagSprite extends _Sprite
 {
-
-    public CsillagSprite(PImage[] img, PApplet p, PVector pos) {
-        super(img, p, pos);
+    
+    public CsillagSprite(PApplet p, PVector pos) {
+        super(p, pos);
     }
 
     @Override
     void render(float w, float h) {
-        p.pushMatrix();
+
+        p.stroke(255, 255, 255, 50);
+        p.fill(252, 239, 209, 100);
         p.ellipse(pos.x-w,pos.y-h,w,h);
-        p.popMatrix();
+        p.fill(255);
     }
     
 }

@@ -14,10 +14,10 @@ import processing.core.*;
 public class Player extends _GameObject
 {
     
-    public Player(PApplet p, PVector pos, PImage[] img, float w, float h) {
-        super(p, pos, img, w, h);
+    public Player(PApplet p, PVector pos, float w, float h) {
+        super(p, pos, w, h);
         
-        this.sprite = new PlayerSprite(img, p, pos);
+        this.sprite = new PlayerSprite(p, pos);
         
         // ezekkel lehet jatszadozni hogy valtozzon a mozgas 
         this.frict = 0.1f;

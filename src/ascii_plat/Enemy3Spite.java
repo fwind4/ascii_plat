@@ -15,8 +15,8 @@ import processing.core.PVector;
  */
 public class Enemy3Spite extends _Sprite{
 
-    public Enemy3Spite(PImage[] img, PApplet p, PVector pos) {
-        super(img, p, pos);
+    public Enemy3Spite(PApplet p, PVector pos) {
+        super(p, pos);
     }
 
     @Override

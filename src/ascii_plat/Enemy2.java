@@ -18,12 +18,12 @@ public class Enemy2 extends _GameObject
     float cc = 0.25f;
     float fi = 0;
     
-    public Enemy2(PApplet p, PVector pos, PImage[] img, float w, float h, float fi) {
-        super(p, pos, img, w, h);
+    public Enemy2(PApplet p, PVector pos, float w, float h, float fi) {
+        super(p, pos, w, h);
         
         this.fi = fi;
         
-        this.sprite = new Enemy2Sprite(img, p, pos);
+        this.sprite = new Enemy2Sprite(p, pos);
         cc = p.map(pos.x, 0, p.width, 0, 0.5f);
         
         // ezekkel lehet jatszadozni hogy valtozzon a mozgas 

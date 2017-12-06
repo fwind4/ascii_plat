@@ -18,12 +18,14 @@ public class Colider {
     
     private PApplet p;
     private ArrayList<_GameObject> objs;
+    private ArrayList<_GameObject> zombies;
     private Explosion ex;
     public int score=0;
 
     public Colider(PApplet p, ArrayList<_GameObject> objs, Explosion ex) {
         this.p = p;
         this.objs = objs;
+        zombies = new ArrayList<>();
         this.ex = ex;
         //this.ex.hide = true;
     }
@@ -55,19 +57,21 @@ public class Colider {
     
     private void destroyObjs()
     {
-        ArrayList<_GameObject> zombies = new ArrayList<>();
-       
+        zombies.clear();
         for (_GameObject obj : objs)
         {
-            if(obj.zombie)
+            if(obj.zombie || obj.silent_zombie)
                 zombies.add(obj);
         }
         for(_GameObject obj : zombies)
         {
             obj.hide = true;
-            ex.pos.x = obj.pos.x;
-            ex.pos.y = obj.pos.y;
-            ex.setC(0);
+            if(obj.zombie)
+            {
+                ex.pos.x = obj.pos.x;
+                ex.pos.y = obj.pos.y;
+                ex.setC(0);
+            }
             if(obj.die())
             {
                 objs.remove(obj);
