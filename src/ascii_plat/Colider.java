@@ -19,6 +19,7 @@ public class Colider {
     private PApplet p;
     private ArrayList<_GameObject> objs;
     private Explosion ex;
+    public int score=0;
 
     public Colider(PApplet p, ArrayList<_GameObject> objs, Explosion ex) {
         this.p = p;
@@ -35,11 +36,16 @@ public class Colider {
                 continue;
             for(_GameObject obj2 : objs)
             {
-                if(obj2 instanceof Explosion)
+                if(obj2 instanceof Explosion || 
+                        (obj1 instanceof Projectile && obj2 instanceof Player) ||
+                        (obj2 instanceof Projectile && obj1 instanceof Player) ||
+                        (obj2 instanceof Projectile && obj1 instanceof Projectile))
                     continue;
                 if(obj1 != obj2 && obj1.checkColide(obj2))
                 {
                     obj2.zombie = true;
+                    if(obj1 instanceof Projectile && obj2 instanceof Enemy1)
+                        score+=1;
                     //System.out.println(obj1.toString()+" hit "+obj2.toString());
                 }
             }
@@ -50,6 +56,7 @@ public class Colider {
     private void destroyObjs()
     {
         ArrayList<_GameObject> zombies = new ArrayList<>();
+       
         for (_GameObject obj : objs)
         {
             if(obj.zombie)
