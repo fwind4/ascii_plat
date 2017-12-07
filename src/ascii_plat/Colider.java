@@ -22,7 +22,6 @@ public class Colider {
     private Explosion ex;
     public int score=0;
     public int life=3;
-    public _GameObject lifes;
 
     public Colider(PApplet p, ArrayList<_GameObject> objs, Explosion ex) {
         this.p = p;
@@ -53,11 +52,10 @@ public class Colider {
                         score+=1;
                     }
                     if(obj1 instanceof Projectile && obj2 instanceof Enemy2){
-                        score+=2;
+                        score+=1;
                        }
                     if(obj1 instanceof Projectile && obj2 instanceof Obstacle){
-                        score+=3;
-                        lifes.e1life-=1;
+                        score+=1;
                     }
                     if(obj1 instanceof Player && obj2 instanceof Enemy1)
                     {

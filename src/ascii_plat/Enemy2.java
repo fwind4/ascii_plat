@@ -17,6 +17,7 @@ public class Enemy2 extends _GameObject
 {
     float cc = 0.25f;
     float fi = 0;
+    public int life = 2;
     
     public Enemy2(PApplet p, PVector pos, float w, float h, float fi) {
         super(p, pos, w, h);
@@ -47,7 +48,18 @@ public class Enemy2 extends _GameObject
 
     @Override
     public boolean die() {
+        if(life > 0)
+        {
+          
         return true;
+        }
+        else{
+            zombie=false;
+          silent_zombie=false;
+          hide= false;
+            life-=1;
+            return false;
+        }
     }
     
 }      
