@@ -6,7 +6,6 @@
 package ascii_plat;
 
 import processing.core.PApplet;
-import processing.core.PImage;
 import processing.core.PVector;
 
 /**
@@ -15,9 +14,9 @@ import processing.core.PVector;
  */
 public class Projectile extends _GameObject{
 
-    public Projectile(PApplet p, PVector pos, PImage[] img, float w, float h) {
-        super(p, pos, img, w, h);
-        this.sprite=new ProjSprite(img,p,pos);
+    public Projectile(PApplet p, PVector pos, float w, float h) {
+        super(p, pos, w, h);
+        this.sprite=new ProjSprite(p,pos);
         
         this.frict = 0.05f;
         this.maxVel = 10f;
@@ -32,8 +31,8 @@ public class Projectile extends _GameObject{
     
     @Override
     public void oscilate() {
-        if(pos.x-w-50>p.width)
-            this.zombie=true;
+        if(pos.x-w-100>p.width)
+            this.silent_zombie=true;
     }
     
     @Override

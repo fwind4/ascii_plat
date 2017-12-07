@@ -19,10 +19,11 @@ public class Enemy2Sprite extends _Sprite
     private int c = 0;
     private int state = 1;
     
-    public Enemy2Sprite(PImage[] img, PApplet p, PVector pos) 
+    public Enemy2Sprite(PApplet p, PVector pos) 
     {
-        super(img, p, pos);
+        super(p, pos);
         
+        this.img = p.loadImage("enemy.png");
         this.sprites = new PImage[5];
         int x = 8,y = 130, w =35 , h = 35;
         

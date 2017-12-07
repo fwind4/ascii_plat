@@ -6,7 +6,6 @@
 package ascii_plat;
 
 import processing.core.PApplet;
-import processing.core.PImage;
 import processing.core.PVector;
 
 /**
@@ -15,9 +14,9 @@ import processing.core.PVector;
  */
 class Explosion extends _GameObject{
 
-    public Explosion(PApplet p, PVector pos, PImage[] img, float w, float h) {
-        super(p, pos, img, w, h);
-        this.sprite = new ExSprite(img, p, pos, this);
+    public Explosion(PApplet p, PVector pos, float w, float h) {
+        super(p, pos, w, h);
+        this.sprite = new ExSprite(p, pos, this);
         
         // ezekkel lehet jatszadozni hogy valtozzon a mozgas 
         this.frict = 0.1f;

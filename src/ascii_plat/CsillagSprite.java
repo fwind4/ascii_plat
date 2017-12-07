@@ -6,22 +6,26 @@
 package ascii_plat;
 
 import processing.core.PApplet;
-import processing.core.PImage;
 import processing.core.PVector;
 
 /**
  *
- * @author Lehel
+ * @author Botond
  */
-public class Enemy3Spite extends _Sprite{
-
-    public Enemy3Spite(PApplet p, PVector pos) {
+public class CsillagSprite extends _Sprite
+{
+    
+    public CsillagSprite(PApplet p, PVector pos) {
         super(p, pos);
     }
 
     @Override
     void render(float w, float h) {
+
+        p.stroke(255, 255, 255, 50);
+        p.fill(252, 239, 209, 100);
         p.ellipse(pos.x-w,pos.y-h,w,h);
+        p.fill(255);
     }
     
 }

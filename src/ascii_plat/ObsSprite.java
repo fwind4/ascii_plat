@@ -19,10 +19,11 @@ public class ObsSprite extends _Sprite{
     private int state = 1;
     
     
-    public ObsSprite(PImage[] img, PApplet p, PVector pos) 
+    public ObsSprite(PApplet p, PVector pos) 
     {
-        super(img, p, pos);
+        super(p, pos);
         
+        this.img = p.loadImage("moai.png");
         this.sprites = new PImage[10];
         PImage[] psprites = new PImage[5];
         PImage[] rsprites = new PImage[5];

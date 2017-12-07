@@ -14,10 +14,10 @@ import processing.core.*;
 public class Player extends _GameObject
 {
     
-    public Player(PApplet p, PVector pos, PImage[] img, float w, float h) {
-        super(p, pos, img, w, h);
+    public Player(PApplet p, PVector pos, float w, float h) {
+        super(p, pos, w, h);
         
-        this.sprite = new PlayerSprite(img, p, pos);
+        this.sprite = new PlayerSprite(p, pos);
         
         // ezekkel lehet jatszadozni hogy valtozzon a mozgas 
         this.frict = 0.1f;
@@ -27,29 +27,37 @@ public class Player extends _GameObject
     
     public void moveLeft()
     {
-        this.acc.add(new PVector(-force,0));
+        this.acc.x = -force;
+        this.sprite.anim(-2);
     }
     
     public void moveRight()
     {
-        this.acc.add(new PVector(force,0));
+        this.acc.x = force;
+        this.sprite.anim(2);
     }
     
     public void moveUp()
     {
-        this.acc.add(new PVector(0,-force));
+        this.acc.y = -force;
         this.sprite.anim(-1);
     }
     
     public void moveDown()
     {
-        this.acc.add(new PVector(0,force));
+        this.acc.y = force;
         this.sprite.anim(1);
     }
     
-    public void stop()
+    void stopLeftRight() 
     {
-        this.acc=(new PVector(0,0));
+        this.acc.x = 0;
+        this.sprite.anim(0);
+    }
+
+    void stopUpDown()
+    {
+        this.acc.y = 0;
         this.sprite.anim(0);
     }
     
@@ -77,4 +85,18 @@ public class Player extends _GameObject
         zombie = false;
         return false;
     }
+    
+    @Override
+    public void edges()
+    {
+        if (pos.y > p.height - h)
+	    pos.y = p.height - h;
+	else if (pos.y < h)
+	    pos.y = h;
+        else if(pos.x > p.width-w)
+            pos.x = p.width-w;
+        else if(pos.x < w)
+            pos.x = w;
+    }
+
 }

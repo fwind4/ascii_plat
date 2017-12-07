@@ -17,9 +17,10 @@ class ExSprite extends _Sprite {
     
     private Explosion ex;
 
-    public ExSprite(PImage[] img, PApplet p, PVector pos, Explosion ex) {
-        super(img,p,pos);
+    public ExSprite(PApplet p, PVector pos, Explosion ex) {
+        super(p,pos);
         
+        this.img = p.loadImage("explosion.png");
         this.ex = ex;
         this.sprites = new PImage[15];
         int x = 0,y = 0, w = 960/5, h = 576/3;
