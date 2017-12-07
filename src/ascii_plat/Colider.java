@@ -18,12 +18,16 @@ public class Colider {
     
     private PApplet p;
     private ArrayList<_GameObject> objs;
+    private ArrayList<_GameObject> zombies;
     private Explosion ex;
     public int score=0;
+    public int life=3;
+    public _GameObject lifes;
 
     public Colider(PApplet p, ArrayList<_GameObject> objs, Explosion ex) {
         this.p = p;
         this.objs = objs;
+        zombies = new ArrayList<>();
         this.ex = ex;
         //this.ex.hide = true;
     }
@@ -45,38 +49,58 @@ public class Colider {
                 {
                     obj2.zombie = true;
                     if(obj1 instanceof Projectile && obj2 instanceof Enemy1)
+                    {
                         score+=1;
+                    }
                     if(obj1 instanceof Projectile && obj2 instanceof Enemy2){
                         score+=2;
                        }
                     if(obj1 instanceof Projectile && obj2 instanceof Obstacle){
                         score+=3;
+                        lifes.e1life-=1;
+                    }
+                    if(obj1 instanceof Player && obj2 instanceof Enemy1)
+                    {
+                        life-=1;
+                    }
+                    if(obj1 instanceof Player && obj2 instanceof Enemy2){
+                        life-=1;
+                    }
+                    if(obj1 instanceof Player && obj2 instanceof Obstacle){
+                        life-=1;
                     }
                     //System.out.println(obj1.toString()+" hit "+obj2.toString());
                 }
             }
         }
+        
         this.destroyObjs();
     }
     
     private void destroyObjs()
     {
-        ArrayList<_GameObject> zombies = new ArrayList<>();
-       
+        zombies.clear();
         for (_GameObject obj : objs)
         {
-            if(obj.zombie)
+            if(obj.zombie || obj.silent_zombie)
                 zombies.add(obj);
         }
         for(_GameObject obj : zombies)
         {
             obj.hide = true;
-            ex.pos.x = obj.pos.x;
-            ex.pos.y = obj.pos.y;
-            ex.setC(0);
-            if(obj.die())
+            if(obj.zombie)
             {
+                ex.pos.x = obj.pos.x;
+                ex.pos.y = obj.pos.y;
+                ex.setC(0);
+            }
+            if(obj.die() )
+            {
+                if(obj.spawn_c > 0 )
+                    obj.spawn_c--;
                 objs.remove(obj);
+                
+                
             }
         }
     }

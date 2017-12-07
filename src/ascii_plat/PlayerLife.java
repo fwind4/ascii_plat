@@ -12,23 +12,27 @@ import processing.core.PFont;
  *
  * @author Botond
  */
-public class Score {
-    
+public class PlayerLife {
     private PApplet p;
-    private PFont font;
     private Colider c;
-    public Score(PApplet p, Colider c) {
+    private PFont font;
+    
+     public PlayerLife(PApplet p, Colider c) {
         this.p=p;
         this.c=c;
         font=p.createFont("DroidSansMono.ttf", 14);
         p.textFont(font, 14);
     }
-    public void drow(){
+      public void drow(){
         p.fill(220);
-        if(c.score > 0)
+        if(c.life > 0)
         {
-        p.text("Score: "+c.score, p.width-100, 50);
+        p.text("Life: "+c.life, 50, 50);
+        }
+        else{
+        p.text("Game Over",50,50);
         }
         p.fill(255);
     }
+    
 }

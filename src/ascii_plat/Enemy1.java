@@ -6,7 +6,6 @@
 package ascii_plat;
 
 import processing.core.PApplet;
-import processing.core.PImage;
 import processing.core.PVector;
 
 /**
@@ -17,10 +16,10 @@ public class Enemy1 extends _GameObject
 {
     float cc = 0.25f;
     
-    public Enemy1(PApplet p, PVector pos, PImage[] img, float w, float h) {
-        super(p, pos, img, w, h);
+    public Enemy1(PApplet p, PVector pos, float w, float h) {
+        super(p, pos, w, h);
         
-        this.sprite = new Enemy1Sprite(img, p, pos);
+        this.sprite = new Enemy1Sprite(p, pos);
         cc = p.map(pos.x, 0, p.width, 0, 0.5f);
         
         // ezekkel lehet jatszadozni hogy valtozzon a mozgas 

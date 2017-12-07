@@ -11,11 +11,11 @@ import processing.core.*;
  */
 public class Obstacle extends _GameObject
 {
-    public Obstacle(PApplet p, PVector pos, PImage[] img, float w, float h)
+    public Obstacle(PApplet p, PVector pos, float w, float h)
     {
-        super(p, pos, img, w, h);
+        super(p, pos, w, h);
         
-        this.sprite = new ObsSprite(img, p, pos);
+        this.sprite = new ObsSprite(p, pos);
         
         // ezekkel lehet jatszadozni hogy valtozzon a mozgas 
         this.frict = 0.05f;

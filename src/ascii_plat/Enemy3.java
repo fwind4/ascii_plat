@@ -6,7 +6,6 @@
 package ascii_plat;
 
 import processing.core.PApplet;
-import processing.core.PImage;
 import processing.core.PVector;
 
 /**
@@ -19,10 +18,10 @@ public class Enemy3 extends _GameObject{
     float cc = 1;
     int state = 1;
     
-    public Enemy3(PApplet p, PVector pos, PImage[] img, float w, float h) {
-        super(p, pos, img, w, h);
+    public Enemy3(PApplet p, PVector pos, float w, float h) {
+        super(p, pos, w, h);
         
-        this.sprite = new Enemy3Spite(img, p, pos);
+        this.sprite = new Enemy3Spite(p, pos);
         
         this.frict = 0.1f;
         this.maxVel = 3f;
