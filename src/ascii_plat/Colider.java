@@ -46,6 +46,12 @@ public class Colider {
                     obj2.zombie = true;
                     if(obj1 instanceof Projectile && obj2 instanceof Enemy1)
                         score+=1;
+                    if(obj1 instanceof Projectile && obj2 instanceof Enemy2){
+                        score+=2;
+                       }
+                    if(obj1 instanceof Projectile && obj2 instanceof Obstacle){
+                        score+=3;
+                    }
                     //System.out.println(obj1.toString()+" hit "+obj2.toString());
                 }
             }
