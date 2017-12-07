@@ -11,7 +11,7 @@ import processing.core.*;
  */
 public class Obstacle extends _GameObject
 {
-    public int life=3;
+    private int life=2;
     public Obstacle(PApplet p, PVector pos, float w, float h)
     {
         super(p, pos, w, h);
@@ -38,9 +38,9 @@ public class Obstacle extends _GameObject
     
     @Override
     public boolean die() {
-        if(life > 0)
+        if(life == 0)
         {
-          
+            life=2;
         return true;
         }
         else{

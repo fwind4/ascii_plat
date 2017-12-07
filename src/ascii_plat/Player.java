@@ -13,7 +13,7 @@ import processing.core.*;
  */
 public class Player extends _GameObject
 {
-    
+    public int life=3;
     public Player(PApplet p, PVector pos, float w, float h) {
         super(p, pos, w, h);
         

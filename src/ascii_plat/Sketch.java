@@ -12,10 +12,11 @@ import processing.core.*;
  * @author wind
  */
 public class Sketch extends PApplet
-{   int state = 0; //The current state
-    final int MAIN_MENU = 0;
-    final int GAME = 2;
-    final int PAUSE = 3;
+{   public int state = 0; //The current state
+    public final int MAIN_MENU = 0;
+    public final int GAME = 2;
+    public final int PAUSE = 3;
+    public final int GAMEOVER = 4;
     PFont font;
     ArrayList<_GameObject> objs;
     ArrayList<_GameObject> csillok;
@@ -47,7 +48,7 @@ public class Sketch extends PApplet
         colider = new Colider(this,objs,ex);
         sf = new SpawnFactory(this, objs);
         score= new Score(this,colider);
-        life = new PlayerLife(this,colider);
+        life = new PlayerLife(this,(Player)objs.get(0));
         objs.add(ex);
         
     }
@@ -85,6 +86,8 @@ public class Sketch extends PApplet
             case PAUSE:
               //Pause Stuff
             break;
+            case GAMEOVER:
+                
         }  
     }
 
@@ -110,12 +113,16 @@ public class Sketch extends PApplet
                 player.moveRight();
                 break;
             case 32:
-                PVector pos = player.pos.copy();
-                pos.x += 40;
-                pos.y += 2;
-                Projectile proj=new Projectile(this,pos,5,10);
-                objs.add(proj);
-                proj.move();
+                if(Projectile.numberproj < 3)
+                {
+                    PVector pos = player.pos.copy();
+                    pos.x += 40;
+                    pos.y += 2;
+                    Projectile proj=new Projectile(this,pos,5,10);
+                    objs.add(proj);
+                    proj.move();
+                    Projectile.numberproj+=1;
+                }
                 break;
             case '1':
                 state=MAIN_MENU;
@@ -126,7 +133,8 @@ public class Sketch extends PApplet
             case '3':
                 state=PAUSE;
                 break;
-	    case '`':
+                
+            case '`':
 		for(_GameObject obj:objs)
 		{
 		    if(obj.debug)
@@ -162,14 +170,14 @@ public class Sketch extends PApplet
         }
     }
     
-    public void mousePressed()
-    {
-        Player player = (Player) objs.get(0);
-        player.mouseFollow();
-    }
-    
-    public void mouseReleased()
-    {
-        Player player = (Player) objs.get(0);
-    }
+//    public void mousePressed()
+//    {
+//        Player player = (Player) objs.get(0);
+//        player.mouseFollow();
+//    }
+//    
+//    public void mouseReleased()
+//    {
+//        Player player = (Player) objs.get(0);
+//    }
 }

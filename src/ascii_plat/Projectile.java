@@ -14,6 +14,7 @@ import processing.core.PVector;
  */
 public class Projectile extends _GameObject{
 
+    public static int numberproj=0;
     public Projectile(PApplet p, PVector pos, float w, float h) {
         super(p, pos, w, h);
         this.sprite=new ProjSprite(p,pos);
@@ -43,6 +44,7 @@ public class Projectile extends _GameObject{
 
     @Override
     public boolean die() {
+        numberproj-=1;
         return true;
     }
     
