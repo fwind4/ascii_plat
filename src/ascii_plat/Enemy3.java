@@ -30,7 +30,7 @@ public class Enemy3 extends _GameObject{
     
     public void move()
     {
-        this.acc.x =force;
+        this.acc.x =-force;
         
     }
 
@@ -38,9 +38,9 @@ public class Enemy3 extends _GameObject{
     public void oscilate() {
         this.pos.y += cc*p.cos(c);
         this.pos.x += cc*p.sin(c);
-        c += 0.005;
-        cc = state == 1 ? cc+1 : cc-1;
-        if (cc == 30)
+        c += 0.05;
+        cc = state == 1 ? cc+0.01f : cc-0.01f;
+        if (cc == 3)
             state = -1;
         else if (cc == 1)
             state = 1;

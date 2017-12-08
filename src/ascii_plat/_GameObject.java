@@ -20,10 +20,9 @@ public abstract class _GameObject
     public boolean silent_zombie = false;
     public boolean debug = false;
     public boolean isEnemy = false;
+    public boolean hittable = true;  
     public static int spawn_c = 0;
-    public int e1life =3;
-    public int e2life=2;
-    public int e3life=1;
+    public int life=0;
     protected _Sprite sprite;
     protected int spriteCounter = 0;
     
@@ -95,12 +94,11 @@ public abstract class _GameObject
     
     public boolean checkColide(_GameObject that)
     {
-        if(this.pos.x+this.w > that.pos.x-that.w &&
+        return  this.hittable && that.hittable &&
+                this.pos.x+this.w > that.pos.x-that.w &&
                 this.pos.x-this.w < that.pos.x+that.w &&
                 this.pos.y+this.h > that.pos.y-that.h &&
-                this.pos.y-this.h < that.pos.y+that.h)
-            return true;
-        return false;
+                this.pos.y-this.h < that.pos.y+that.h;
     }
     
  

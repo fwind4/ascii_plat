@@ -35,33 +35,26 @@ public class Colider {
     {
         for(_GameObject obj1 : objs)
         {
-            if(obj1 instanceof Explosion)
-                continue;
             for(_GameObject obj2 : objs)
             {
-                if(obj2 instanceof Explosion || 
-                        (obj1 instanceof Projectile && obj2 instanceof Player) ||
+                if(     (obj1 instanceof Projectile && obj2 instanceof Player) ||
                         (obj2 instanceof Projectile && obj1 instanceof Player) ||
                         (obj2 instanceof Projectile && obj1 instanceof Projectile))
                     continue;
                 if(obj1 != obj2 && obj1.checkColide(obj2))
                 {
-                    obj2.zombie = true;
-                    if(obj1 instanceof Projectile && obj2 instanceof Enemy1)
+                    if(obj1.hittable && obj2.hittable)
                     {
-                        score+=1;
+                        obj2.zombie = true;
+                        if(obj1 instanceof Projectile && obj2.isEnemy)
+                        {
+                            score+=10;
+                        }
+                        if(obj1 instanceof Player)
+                        {
+                            ((Player)obj1).life-=1;
+                        }
                     }
-                    if(obj1 instanceof Projectile && obj2 instanceof Enemy2){
-                        score+=1;
-                       }
-                    if(obj1 instanceof Projectile && obj2 instanceof Obstacle){
-                        score+=1;
-                    }
-                    if(obj1 instanceof Player )
-                    {
-                        ((Player)obj1).life-=1;
-                    }
-                   
                     //System.out.println(obj1.toString()+" hit "+obj2.toString());
                 }
             }
@@ -83,6 +76,7 @@ public class Colider {
             obj.hide = true;
             if(obj.zombie)
             {
+                
                 ex.pos.x = obj.pos.x;
                 ex.pos.y = obj.pos.y;
                 ex.setC(0);
@@ -92,7 +86,7 @@ public class Colider {
                 if(obj.spawn_c > 0 )
                     obj.spawn_c--;
                 objs.remove(obj);
-                
+                //System.out.println("Removed: "+ obj.getClass().toString());
                 
             }
         }

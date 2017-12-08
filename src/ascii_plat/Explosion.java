@@ -13,10 +13,13 @@ import processing.core.PVector;
  * @author wind
  */
 class Explosion extends _GameObject{
+    
+    public boolean small = false;
 
     public Explosion(PApplet p, PVector pos, float w, float h) {
         super(p, pos, w, h);
         this.sprite = new ExSprite(p, pos, this);
+        this.hittable = false;
         
         // ezekkel lehet jatszadozni hogy valtozzon a mozgas 
         this.frict = 0.1f;

@@ -17,13 +17,12 @@ public class Enemy2 extends _GameObject
 {
     float cc = 0.25f;
     float fi = 0;
-    private int life = 1;
     
     public Enemy2(PApplet p, PVector pos, float w, float h, float fi) {
         super(p, pos, w, h);
         
         this.fi = fi;
-        
+        life = 1;
         this.sprite = new Enemy2Sprite(p, pos);
         cc = p.map(pos.x, 0, p.width, 0, 0.5f);
         

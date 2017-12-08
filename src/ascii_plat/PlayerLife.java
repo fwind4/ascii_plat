@@ -5,7 +5,6 @@
  */
 package ascii_plat;
 
-import processing.core.PApplet;
 import processing.core.PFont;
 
 /**
@@ -16,7 +15,6 @@ public class PlayerLife {
     private Sketch p;
     private Player pl;
     private PFont font;
-    private PApplet APL;
     
      public PlayerLife(Sketch p, Player pl) {
         this.p=p;
@@ -33,7 +31,7 @@ public class PlayerLife {
           {
               p.fill(255, 116, 20 );
               p.noStroke();
-              p.rect(10+i*15,10,10,10);
+              p.rect(10+i*35,10,30,30);
           }
        
         }
