@@ -5,7 +5,6 @@
  */
 package ascii_plat;
 
-import processing.core.PApplet;
 import processing.core.PFont;
 
 /**
@@ -13,24 +12,32 @@ import processing.core.PFont;
  * @author Botond
  */
 public class PlayerLife {
-    private PApplet p;
-    private Colider c;
+    private Sketch p;
+    private Player pl;
     private PFont font;
     
-     public PlayerLife(PApplet p, Colider c) {
+     public PlayerLife(Sketch p, Player pl) {
         this.p=p;
-        this.c=c;
+        this.pl=pl;
         font=p.createFont("DroidSansMono.ttf", 14);
         p.textFont(font, 14);
     }
       public void drow(){
         p.fill(220);
-        if(c.life > 0)
+        if(pl.life > 0)
         {
-        p.text("Life: "+c.life, 50, 50);
+        //p.text("Life: "+pl.life, 50, 50);
+          for(int i=0; i<pl.life;i++)
+          {
+              p.fill(255, 116, 20 );
+              p.noStroke();
+              p.rect(10+i*35,10,30,30);
+          }
+       
         }
         else{
-        p.text("Game Over",50,50);
+            p.state = p.GAMEOVER;
+        //p.text("Game Over",50,50);
         }
         p.fill(255);
     }

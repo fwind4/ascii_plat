@@ -17,11 +17,19 @@ public class Enemy3Spite extends _Sprite{
 
     public Enemy3Spite(PApplet p, PVector pos) {
         super(p, pos);
+        
+        this.img = p.loadImage("enemy.png");
+        this.sprites = new PImage[1];
+        int x = 25,y = 550, w =110 , h = 70;
+        
+        
+            this.sprites[0] = this.img.get(x, y, w, h);
+            this.sprites[0].resize(w*2, h*2);
     }
 
     @Override
     void render(float w, float h) {
-        p.ellipse(pos.x-w,pos.y-h,w,h);
+        p.image(sprites[0],pos.x-w,pos.y-h);
     }
     
 }

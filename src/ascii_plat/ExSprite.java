@@ -37,6 +37,7 @@ class ExSprite extends _Sprite {
 
     @Override
     void render(float w, float h) {
+            
         if(p.frameCount % 5 == 0 && c < sprites.length-1)
         {
             c++;

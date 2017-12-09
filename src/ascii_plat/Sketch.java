@@ -12,18 +12,25 @@ import processing.core.*;
  * @author wind
  */
 public class Sketch extends PApplet
-{   int state = 0; //The current state
-    final int MAIN_MENU = 0;
-    final int GAME = 2;
-    final int PAUSE = 3;
+{   public int state = 0; //The current state
+    public final int MAIN_MENU = 0;
+    public final int GAME = 2;
+    public final int PAUSE = 3;
+    public final int GAMEOVER = 4;
+    public final int INSTRUCTION = 5;
+    int c = 20;
+    boolean st = false;
     PFont font;
     ArrayList<_GameObject> objs;
     ArrayList<_GameObject> csillok;
-
+    
+    Player player;
     Colider colider;
     SpawnFactory sf;
+    Explosion ex;
     Score score;
     PlayerLife life;
+    Menu mm;
     
     public void settings() 
     {
@@ -33,7 +40,10 @@ public class Sketch extends PApplet
     
     public void setup()
     {   
-        
+       
+          
+        font=createFont("prstartk.ttf", 18);
+        mm=new Menu(this,font);
         objs = new ArrayList<>();
         csillok = new ArrayList<>();
         for(int i=0;i<=50;i++){
@@ -43,26 +53,52 @@ public class Sketch extends PApplet
             csillok.add(cs);
         }
         
-        Explosion ex = new Explosion(this, new PVector(-150,-150), 100, 100);
+        ex = new Explosion(this, new PVector(-150,-150), 100, 100);
         colider = new Colider(this,objs,ex);
         sf = new SpawnFactory(this, objs);
         score= new Score(this,colider);
-        life = new PlayerLife(this,colider);
-        objs.add(ex);
+        life = new PlayerLife(this,(Player)objs.get(0));
+        player = (Player) objs.get(0);
+        //objs.add(ex);
         
     }
     
     public void draw()
     {
         
-        background(4, 21, 48);
+        background(13, 21, 33);
+        
         //could be intense, UTKOZES
         colider.checkHit();
         sf.spawn();
         switch(state) {
             case MAIN_MENU:
-            
-              
+              //Main Menu Stuff
+              for(_GameObject ob : csillok)
+                {
+                    ob.update();
+                    ob.render();
+                }
+              mm.MainMenu();
+              break;
+            case GAMEOVER:
+                if(c == 50)
+                    st = true;
+                else if (c == 20)
+                    st = false;
+                if(st && frameCount % 3 == 0)
+                    c--;
+                else if(!st && frameCount % 3 == 0)
+                    c++;
+                fill(252, 158, 27);
+                textFont(font,c);
+                text(     "     Game Over\n"
+                        + "Press 'R' to retry.\n"+
+                        "Press 'Q' for menu.",
+                        width*0.5f-150-c*5,height*0.5f+30);
+                fill(255);
+                player.hide = true;
+                objs.remove(player);
             case GAME:
                 for(_GameObject ob : csillok)
                 {
@@ -74,30 +110,73 @@ public class Sketch extends PApplet
                     obj.update();
                     obj.render();
                 }
-               
+                ex.render();
+                ex.update();
                 
                 score.drow();
                 life.drow();
-              //Game Stuff
-              break;
-            case PAUSE:
-              //Pause Stuff
-            break;
+                //Game Stuff
+                break;
+            
+            case INSTRUCTION:
+                for(_GameObject ob : csillok)
+                {
+                    ob.update();
+                    ob.render();
+                }
+                mm.instruction();
+                break;
+            default:
+                break;
+                
         }  
     }
 
     @Override
     public void keyPressed() {
         
-        Player player = (Player) objs.get(0);
+        if(key == CODED)
+        {
+            switch(keyCode)
+            {
+                case UP:
+                    if(state == MAIN_MENU)
+                        mm.menuUp();
+                    else if(state == GAME)
+                        player.moveUp();
+                    break;
+                case DOWN:
+                    if(state == MAIN_MENU)
+                        mm.menuDown();
+                    else if(state == GAME)
+                        player.moveDown();
+                    break;
+                case LEFT:
+                    player.moveLeft();
+                    break;
+                case RIGHT:
+                    player.moveRight();
+                    break;
+                
+                default:
+                    break;
+            }
+        }
+        else
         switch (key) {
             case 'w':
             case 'W':
-                player.moveUp();
+                if(state == MAIN_MENU)
+                    mm.menuUp();
+                else if(state == GAME)
+                    player.moveUp();
                 break;
             case 's':
             case 'S':
-                player.moveDown();
+                if(state == MAIN_MENU)
+                    mm.menuDown();
+                else if(state == GAME)
+                    player.moveDown();
                 break;
             case 'a':
             case 'A':
@@ -108,32 +187,85 @@ public class Sketch extends PApplet
                 player.moveRight();
                 break;
             case 32:
-                PVector pos = player.pos.copy();
-                pos.x += 40;
-                pos.y += 2;
-                Projectile proj=new Projectile(this,pos,5,10);
-                objs.add(proj);
-                proj.move();
+                if(Projectile.numberproj < 3)
+                {
+                    PVector pos = player.pos.copy();
+                    pos.x += 40;
+                    pos.y += 2;
+                    Projectile proj=new Projectile(this,pos,5,10);
+                    objs.add(proj);
+                    proj.move();
+                    Projectile.numberproj+=1;
+                }
                 break;
-            case '1':
-                state=MAIN_MENU;
-                
+            
+            case 'p':
+            case 'P':
+                if(state==GAME)
+                {   
+                    state=PAUSE;
+                    noLoop();
+                }
+                else if(state==PAUSE)
+                {
+                    state=GAME;
+                    loop();
+                }
                 break;
-            case '2':
-                state=GAME;
+            case 'r':
+            case 'R':
+                if(state==GAMEOVER){
+                    player.life = 3;
+                    player.hide = false;
+                    player.pos.y = height*0.5f;
+                    player.pos.x = 70;
+                    objs.add(0, player);
+                    c = 20;
+                    state = 2;
+                }
                 break;
-            case '3':
-                state=PAUSE;
-                break;
-	    case '`':
+            case 'q':
+            case 'Q':
+                if(state==GAMEOVER){
+                    state=MAIN_MENU;
+                }
+                break;    
+            case '`':
 		for(_GameObject obj:objs)
 		{
 		    if(obj.debug)
 			obj.debug = false;
 		    else
 			obj.debug = true;
-		}
+		}                
 		break;
+            case ESC:
+                key=0;
+                    if(state==GAME)
+                        state=MAIN_MENU;
+                    else if(state==MAIN_MENU)
+                        exit();
+                    break;
+            case ENTER:
+                if(state==MAIN_MENU)
+                {
+                    switch(mm.menuState){
+                        case 0:
+                            state = GAME;
+                            break;
+                        case 1:
+                            state = INSTRUCTION;
+                            break;
+                        case 2:
+                            exit();
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                else if (state == INSTRUCTION)
+                    state = MAIN_MENU;
+                break;
             default:
                 break;
         }
@@ -141,7 +273,23 @@ public class Sketch extends PApplet
     
     public void keyReleased()
     {
-        Player player = (Player) objs.get(0);
+        if(key == CODED)
+        {
+            switch(keyCode)
+            {
+                case UP:
+                case DOWN:
+                    player.stopUpDown();
+                    break;
+                case LEFT:
+                case RIGHT:
+                    player.stopLeftRight();
+                    break;
+                default:
+                    break;
+            }
+        }
+        else
         switch(key)
         {
             case 'w':
@@ -161,14 +309,14 @@ public class Sketch extends PApplet
         }
     }
     
-    public void mousePressed()
-    {
-        Player player = (Player) objs.get(0);
-        player.mouseFollow();
-    }
-    
-    public void mouseReleased()
-    {
-        Player player = (Player) objs.get(0);
-    }
+//    public void mousePressed()
+//    {
+//        Player player = (Player) objs.get(0);
+//        player.mouseFollow();
+//    }
+//    
+//    public void mouseReleased()
+//    {
+//        Player player = (Player) objs.get(0);
+//    }
 }

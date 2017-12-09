@@ -40,7 +40,7 @@ public class SpawnFactory {
             obs.isEnemy = true;
             obs.zombie = true;
             e_init.put("obs"+c, obs);
-            Enemy3 e3 = new Enemy3(p, pos.copy(), 30, 30);
+            Enemy3 e3 = new Enemy3(p, pos.copy(), 110, 70);
             e3.move();
             e3.isEnemy = true;
             e3.zombie = true;

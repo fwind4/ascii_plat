@@ -13,10 +13,13 @@ import processing.core.*;
  */
 public class Player extends _GameObject
 {
+    public boolean hasDied = false;
+    public boolean blink = false;
     
     public Player(PApplet p, PVector pos, float w, float h) {
         super(p, pos, w, h);
         
+        life=3;
         this.sprite = new PlayerSprite(p, pos);
         
         // ezekkel lehet jatszadozni hogy valtozzon a mozgas 
@@ -74,15 +77,29 @@ public class Player extends _GameObject
 
     @Override
     public void oscilate() {
-        
+        if(p.frameCount % 120 == 0 && hasDied)
+        {
+            this.pos.x = 50;
+            this.pos.y = p.height*0.5f;
+            hide = false;
+            hasDied = false;
+            blink = true;
+            ((PlayerSprite)sprite).blink = 10;
+        }
+        else if(p.frameCount % 180 == 0 && blink)
+        {
+            blink = false;
+            hittable = true;
+            ((PlayerSprite)sprite).blink = 1;
+        }
     }
     
     @Override
     public boolean die() {
-        this.pos.x = 50;
-        this.pos.y = p.height*0.5f;
-        hide = false;
+        this.pos.y = -1000;
         zombie = false;
+        hittable = false;
+        hasDied = true;
         return false;
     }
     
@@ -98,5 +115,6 @@ public class Player extends _GameObject
         else if(pos.x < w)
             pos.x = w;
     }
+   
 
 }

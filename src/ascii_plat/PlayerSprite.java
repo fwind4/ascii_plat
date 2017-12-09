@@ -29,6 +29,7 @@ public class PlayerSprite extends _Sprite {
     private final int hh;
     private int cw;
     private int ch;
+    public int blink = 1;
     
     public PlayerSprite(PApplet p, PVector pos) {
         super(p, pos);
@@ -119,13 +120,16 @@ public class PlayerSprite extends _Sprite {
         {
             fc++;
         }
-        else if(fc == flames.length-1)
+        if(fc == flames.length-1)
         {
             fc = 0;
         }
-            
-        p.image(sprites[counter],pos.x-23*2,pos.y-16*2);        
-        p.image(flames[fc],pos.x-cw-50,pos.y-ch+30);
+        
+        if(p.frameCount % blink == 0)
+        {
+            p.image(sprites[counter],pos.x-23*2,pos.y-16*2);        
+            p.image(flames[fc],pos.x-cw-50,pos.y-ch+30);
+        }
 
     }
     

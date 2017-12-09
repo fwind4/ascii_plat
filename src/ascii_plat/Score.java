@@ -14,20 +14,18 @@ import processing.core.PFont;
  */
 public class Score {
     
-    private PApplet p;
-    private PFont font;
+    private Sketch p;
     private Colider c;
-    public Score(PApplet p, Colider c) {
+    public Score(Sketch p, Colider c) {
         this.p=p;
         this.c=c;
-        font=p.createFont("DroidSansMono.ttf", 14);
-        p.textFont(font, 14);
     }
     public void drow(){
-        p.fill(220);
+        p.fill(252, 158, 27);
         if(c.score > 0)
         {
-        p.text("Score: "+c.score, p.width-100, 50);
+        p.textFont(p.font, 18);
+        p.text("Score: "+c.score, p.width*0.5f, 50);
         }
         p.fill(255);
     }
