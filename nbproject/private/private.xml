@@ -3,28 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Lehel/Desktop/asciiv2/ascii_plat/src/ascii_plat/CsillagSprite.java</file>
-            <file>file:/C:/Users/Lehel/Desktop/asciiv2/ascii_plat/src/ascii_plat/Score.java</file>
-            <file>file:/C:/Users/Lehel/Desktop/asciiv2/ascii_plat/src/ascii_plat/Enemy2Sprite.java</file>
-            <file>file:/C:/Users/Lehel/Desktop/asciiv2/ascii_plat/src/ascii_plat/Enemy1.java</file>
-            <file>file:/C:/Users/Lehel/Desktop/asciiv2/ascii_plat/src/ascii_plat/_Sprite.java</file>
-            <file>file:/C:/Users/Lehel/Desktop/asciiv2/ascii_plat/src/ascii_plat/Csillagok.java</file>
-            <file>file:/C:/Users/Lehel/Desktop/asciiv2/ascii_plat/src/ascii_plat/Sketch.java</file>
-            <file>file:/C:/Users/Lehel/Desktop/asciiv2/ascii_plat/src/ascii_plat/Colider.java</file>
-            <file>file:/C:/Users/Lehel/Desktop/asciiv2/ascii_plat/src/ascii_plat/ProjSprite.java</file>
-            <file>file:/C:/Users/Lehel/Desktop/asciiv2/ascii_plat/src/ascii_plat/PlayerLife.java</file>
-            <file>file:/C:/Users/Lehel/Desktop/asciiv2/ascii_plat/src/ascii_plat/Enemy3.java</file>
-            <file>file:/C:/Users/Lehel/Desktop/asciiv2/ascii_plat/src/ascii_plat/Main.java</file>
-            <file>file:/C:/Users/Lehel/Desktop/asciiv2/ascii_plat/src/ascii_plat/Projectile.java</file>
-            <file>file:/C:/Users/Lehel/Desktop/asciiv2/ascii_plat/src/ascii_plat/Enemy1Sprite.java</file>
-            <file>file:/C:/Users/Lehel/Desktop/asciiv2/ascii_plat/src/ascii_plat/Enemy3Spite.java</file>
-            <file>file:/C:/Users/Lehel/Desktop/asciiv2/ascii_plat/src/ascii_plat/SpawnFactory.java</file>
-            <file>file:/C:/Users/Lehel/Desktop/asciiv2/ascii_plat/src/ascii_plat/_GameObject.java</file>
-            <file>file:/C:/Users/Lehel/Desktop/asciiv2/ascii_plat/src/ascii_plat/ObsSprite.java</file>
-            <file>file:/C:/Users/Lehel/Desktop/asciiv2/ascii_plat/src/ascii_plat/Obstacle.java</file>
-            <file>file:/C:/Users/Lehel/Desktop/asciiv2/ascii_plat/src/ascii_plat/Explosion.java</file>
-            <file>file:/C:/Users/Lehel/Desktop/asciiv2/ascii_plat/src/ascii_plat/Player.java</file>
-            <file>file:/C:/Users/Lehel/Desktop/asciiv2/ascii_plat/src/ascii_plat/Enemy2.java</file>
+            <file>file:/home/wind/Desktop/_Projects/sapientia/Ascii_plat/src/ascii_plat/Colider.java</file>
+            <file>file:/home/wind/Desktop/_Projects/sapientia/Ascii_plat/src/ascii_plat/Enemy3.java</file>
+            <file>file:/home/wind/Desktop/_Projects/sapientia/Ascii_plat/src/ascii_plat/_GameObject.java</file>
+            <file>file:/home/wind/Desktop/_Projects/sapientia/Ascii_plat/src/ascii_plat/Sketch.java</file>
+            <file>file:/home/wind/Desktop/_Projects/sapientia/Ascii_plat/src/ascii_plat/_Sprite.java</file>
+            <file>file:/home/wind/Desktop/_Projects/sapientia/Ascii_plat/src/ascii_plat/Enemy3Spite.java</file>
+            <file>file:/home/wind/Desktop/_Projects/sapientia/Ascii_plat/src/ascii_plat/Menu.java</file>
+            <file>file:/home/wind/Desktop/_Projects/sapientia/Ascii_plat/src/ascii_plat/SpawnFactory.java</file>
+            <file>file:/home/wind/Desktop/_Projects/sapientia/Ascii_plat/src/ascii_plat/PlayerLife.java</file>
+            <file>file:/home/wind/Desktop/_Projects/sapientia/Ascii_plat/src/ascii_plat/Score.java</file>
         </group>
     </open-files>
 </project-private>

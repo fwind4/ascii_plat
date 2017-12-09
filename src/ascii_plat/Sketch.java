@@ -216,11 +216,8 @@ public class Sketch extends PApplet
             case 'R':
                 if(state==GAMEOVER){
                     player.life = 3;
-                    player.hide = false;
-                    player.pos.y = height*0.5f;
-                    player.pos.x = 70;
                     objs.add(0, player);
-                    c = 20;
+                    colider.score = 0;
                     state = 2;
                 }
                 break;
