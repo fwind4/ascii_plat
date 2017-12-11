@@ -22,6 +22,7 @@ public class SpawnFactory {
     private ArrayList<_GameObject> enemies;
     private HashMap<String, _GameObject> e_init;
     private int spawnType;
+    private boolean l= false;
 
     public SpawnFactory(PApplet p, ArrayList<_GameObject> objs) {
         this.p = p;
@@ -33,6 +34,11 @@ public class SpawnFactory {
         Player player = new Player(p,pos,40,15);
         objs.add(player);
         
+        Enemy3 e3 = new Enemy3(p, pos.copy(), 110, 70);
+            e3.move();
+            e3.isEnemy = true;
+            e3.zombie = true;
+            e_init.put("e3", e3);
         for(int c = 0; c<5; ++c)
         {
             Obstacle obs = new Obstacle(p,pos.copy(),30,70);
@@ -40,11 +46,7 @@ public class SpawnFactory {
             obs.isEnemy = true;
             obs.zombie = true;
             e_init.put("obs"+c, obs);
-            Enemy3 e3 = new Enemy3(p, pos.copy(), 110, 70);
-            e3.move();
-            e3.isEnemy = true;
-            e3.zombie = true;
-            e_init.put("e3"+c, e3);
+            
             for(int i=0; i<5; ++i)
             {
                 Enemy1 e1 = new Enemy1(p,pos.copy(),25,25);
@@ -67,6 +69,7 @@ public class SpawnFactory {
                 e_init.put("e22_"+i+Integer.toString(c), e22);
 
             }
+            
         }
         
     }
@@ -167,15 +170,14 @@ public class SpawnFactory {
                         objs.add(obj);
                     }
                     break;
-                case 3:
-                    obj = e_init.get("e3"+Enemy3.spawn_c);
-                    if(!obj.zombie && !obj.silent_zombie)
+                default:
+                    break;
+                    
+            }
+            if(Colider.score % 100 == 0 && Colider.score!=0 && l == false)
                     {
-                        if(Enemy3.spawn_c == 4)
-                            break;
-                        Enemy3.spawn_c++;
-                        break;
-                    }
+                    l=true;
+                    obj = e_init.get("e3");
                     obj.pos.x = p.width+400;
                     obj.pos.y = 200;
                     obj.hide = false;
@@ -183,9 +185,11 @@ public class SpawnFactory {
                     obj.silent_zombie = false;
                     enemies.add(obj);
                     objs.add(obj);
-                    break;
-                default:
-                    break;
+                    
+                    }
+            if(Colider.score%100!=0 )
+            {
+                l=false;
             }
         }
     }

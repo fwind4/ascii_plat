@@ -38,8 +38,8 @@ public class Enemy3 extends _GameObject{
     public void oscilate() {
         this.pos.y += cc*p.cos(c);
         this.pos.x += cc*p.sin(c);
-        c += 0.05;
-        cc = state == 1 ? cc+0.01f : cc-0.01f;
+        c += 0.005;
+        cc = state == 1 ? cc+0.002f : cc-0.002f;
         if (cc == 3)
             state = -1;
         else if (cc == 1)

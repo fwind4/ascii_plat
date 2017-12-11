@@ -39,7 +39,8 @@ public class Colider {
             {
                 if(     (obj1 instanceof Projectile && obj2 instanceof Player) ||
                         (obj2 instanceof Projectile && obj1 instanceof Player) ||
-                        (obj2 instanceof Projectile && obj1 instanceof Projectile))
+                        (obj2 instanceof Projectile && obj1 instanceof Projectile) ||
+                        (obj2.isEnemy && obj1.isEnemy))
                     continue;
                 if(obj1 != obj2 && obj1.checkColide(obj2))
                 {
