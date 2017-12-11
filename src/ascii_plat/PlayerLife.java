@@ -15,6 +15,8 @@ public class PlayerLife {
     private Sketch p;
     private Player pl;
     private PFont font;
+    private Colider c;
+    private boolean l =false;
     
      public PlayerLife(Sketch p, Player pl) {
         this.p=p;
@@ -26,12 +28,24 @@ public class PlayerLife {
         p.fill(220);
         if(pl.life > 0)
         {
+            
         //p.text("Life: "+pl.life, 50, 50);
           for(int i=0; i<pl.life;i++)
           {
               p.fill(255, 116, 20 );
               p.noStroke();
               p.rect(10+i*35,10,30,30);
+              if(c.score % 100 == 0 && l==false && c.score!=0)
+              {
+                   l=true;
+                  pl.life+=1;
+                 
+              }
+              if (c.score %100 != 0)
+              {
+                  l=false;
+              }
+            
           }
        
         }

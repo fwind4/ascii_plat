@@ -20,7 +20,7 @@ public class Colider {
     private ArrayList<_GameObject> objs;
     private ArrayList<_GameObject> zombies;
     private Explosion ex;
-    public int score=0;
+    public static int score=0;
     
 
     public Colider(PApplet p, ArrayList<_GameObject> objs, Explosion ex) {
@@ -49,6 +49,8 @@ public class Colider {
                         if(obj1 instanceof Projectile && obj2.isEnemy)
                         {
                             score+=1;
+                            
+                                
                         }
                         if(obj1 instanceof Player)
                         {

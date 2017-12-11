@@ -16,10 +16,14 @@ public class Player extends _GameObject
     public boolean hasDied = false;
     public boolean blink = false;
     
+    private Colider c;
+    
     public Player(PApplet p, PVector pos, float w, float h) {
         super(p, pos, w, h);
         
         life=3;
+        if(c.score>5)
+            life+=1;
         this.sprite = new PlayerSprite(p, pos);
         
         // ezekkel lehet jatszadozni hogy valtozzon a mozgas 
