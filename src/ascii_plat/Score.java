@@ -25,7 +25,7 @@ public class Score {
         if(c.score > 0)
         {
         p.textFont(p.font, 18);
-        p.text("Score: "+c.score, p.width*0.5f, 50);
+        p.text("Score: "+c.score, p.width*0.4f, 50);
         }
         p.fill(255);
     }

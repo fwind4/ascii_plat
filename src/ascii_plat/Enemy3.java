@@ -48,7 +48,18 @@ public class Enemy3 extends _GameObject{
 
     @Override
     public boolean die() {
+         if(life == 0)
+        {
+         life = 5;
         return true;
+        }
+        else{
+            zombie=false;
+          silent_zombie=false;
+          hide= false;
+            life-=1;
+            return false;
+        }
     }
     
     

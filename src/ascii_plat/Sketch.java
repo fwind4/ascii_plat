@@ -31,6 +31,7 @@ public class Sketch extends PApplet
     Score score;
     PlayerLife life;
     Menu mm;
+    HighScore highscore;
     
     public void settings() 
     {
@@ -57,8 +58,10 @@ public class Sketch extends PApplet
         colider = new Colider(this,objs,ex);
         sf = new SpawnFactory(this, objs);
         score= new Score(this,colider);
+        highscore = new HighScore(this,colider);
         life = new PlayerLife(this,(Player)objs.get(0));
         player = (Player) objs.get(0);
+        
         //objs.add(ex);
         
     }
@@ -114,6 +117,7 @@ public class Sketch extends PApplet
                 ex.update();
                 
                 score.drow();
+                highscore.draw();
                 life.drow();
                 //Game Stuff
                 break;
@@ -187,7 +191,7 @@ public class Sketch extends PApplet
                 player.moveRight();
                 break;
             case 32:
-                if(Projectile.numberproj < 3)
+                if(Projectile.numberproj < 5)
                 {
                     PVector pos = player.pos.copy();
                     pos.x += 40;

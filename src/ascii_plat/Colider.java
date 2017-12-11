@@ -48,7 +48,7 @@ public class Colider {
                         obj2.zombie = true;
                         if(obj1 instanceof Projectile && obj2.isEnemy)
                         {
-                            score+=10;
+                            score+=1;
                         }
                         if(obj1 instanceof Player)
                         {
