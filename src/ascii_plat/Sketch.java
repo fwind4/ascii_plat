@@ -6,6 +6,7 @@
 package ascii_plat;
 import java.util.ArrayList;
 import processing.core.*;
+import processing.sound.*;
 
 /**
  *
@@ -32,6 +33,7 @@ public class Sketch extends PApplet
     PlayerLife life;
     Menu mm;
     HighScore highscore;
+    Sound sound;
     
     public void settings() 
     {
@@ -61,6 +63,9 @@ public class Sketch extends PApplet
         highscore = new HighScore(this,colider);
         life = new PlayerLife(this,(Player)objs.get(0));
         player = (Player) objs.get(0);
+        
+        
+       sound= new Sound();
         
         //objs.add(ex);
         
