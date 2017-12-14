@@ -65,7 +65,7 @@ public class Sketch extends PApplet
         player = (Player) objs.get(0);
         
         
-       sound= new Sound();
+       
         
         //objs.add(ex);
         
