@@ -6,7 +6,6 @@
 package ascii_plat;
 import java.util.ArrayList;
 import processing.core.*;
-import processing.sound.*;
 
 /**
  *
